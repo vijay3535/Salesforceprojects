@@ -1,0 +1,12 @@
+public class TransactionLogHandler {
+    public static void doHandleException(System.Exception ex, String processName){
+        Error_Log__c transactionlog = new Error_Log__c(
+                Log_details__c = ex.getStackTraceString() +' <br/>' +  ex.getMessage() + '<br/>' +ex.getCause() + ' <br/>' + ex.getTypeName(),
+             Log_Date__c = System.now(),
+              process_name__c = processName
+                     );
+        
+           insert transactionlog;   
+    }
+
+}
